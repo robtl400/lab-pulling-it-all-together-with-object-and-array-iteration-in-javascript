@@ -114,3 +114,96 @@ function gameObject() {
         },
     };
 }
+
+// Retrieve Player Information
+
+function numPointsScored(playerName) {
+    const game = gameObject();
+   
+    if (game.home.players[playerName]) {
+        return game.home.players[playerName].points;
+    }
+
+    if (game.away.players[playerName]) {
+        return game.away.players[playerName].points;
+    }
+}
+
+function shoeSize(playerName) {
+    const game = gameObject();
+    
+    if (game.home.players[playerName]) {
+        return game.home.players[playerName].shoe;
+    }
+
+    if (game.away.players[playerName]) {
+        return game.away.players[playerName].shoe;
+    }
+}
+
+// Team Information
+
+function teamColors(teamName) {
+    const game = gameObject();
+
+    if (game.home.teamName === teamName) {
+        return game.home.colors;
+    }
+
+    if (game.away.teamName === teamName) {
+        return game.away.colors;
+    }
+}
+
+function teamNames() {
+    const game = gameObject();
+    const names = [game.home.teamName, game.away.teamName];
+    return names;
+}
+
+// Player Stats
+
+function playerNumbers(teamName) {
+    const game = gameObject();
+    const numbers = [];
+    
+    if (game.home.teamName === teamName) {
+        const players = game.home.players;
+        for (const playerName in players) {
+            numbers.push(players[playerName].number);
+        }
+        return numbers;
+    }
+    
+    if (game.away.teamName === teamName) {
+        const players = game.away.players;
+        for (const playerName in players) {
+            numbers.push(players[playerName].number);
+        }
+        return numbers;
+    }
+}
+
+function playerStats(playerName) {
+    const game = gameObject();
+    
+    if (game.home.players[playerName]) {
+        return game.home.players[playerName];
+    }
+
+    if (game.away.players[playerName]) {
+        return game.away.players[playerName];
+    }
+}
+
+
+
+module.exports = {
+    gameObject,
+    numPointsScored,
+    shoeSize,
+    teamColors,
+    teamNames,
+    playerNumbers,
+    playerStats,
+};
